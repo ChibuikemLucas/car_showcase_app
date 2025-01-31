@@ -14,7 +14,8 @@ const Navbar = () => {
          alt="Car Hub Logo"
          width={118}
          height={18}
-         className="object-contain"/>
+         className="object-contain"
+         />
       </Link>
       
       <CustomButton 
