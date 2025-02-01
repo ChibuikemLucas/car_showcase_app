@@ -12,6 +12,10 @@ const Footer = () => {
        <Image src="/logo.svg" alt="logo"
           width={118} height={18}
           className="object-contain" />
+          <p className="text-base
+           text-gray-700"></p>
+           CarHub 2023 <br />
+           All rights reserved &copy;
         </div>
        </div>
     </footer>
