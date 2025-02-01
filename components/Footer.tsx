@@ -21,6 +21,7 @@ const Footer = () => {
 
         
              <div className="footer__links">
+              
            </div>
        </div>
     </footer>
