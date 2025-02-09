@@ -14,6 +14,9 @@ export default function Home() {
          <p>Explore the cars you might like</p>
           </div>
 
+          <div className="home__filters">
+            
+          </div>
         </div>
       </main>
   );
