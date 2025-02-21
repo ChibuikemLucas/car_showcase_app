@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Hero } from "@/components";
 import SearchBar from "@/components/SearchBar";
 import CustomFilter from "@/components/CustomFilter";
+import { Calendar } from "@/components";
 
 export default function Home() {
   return (
@@ -20,8 +21,12 @@ export default function Home() {
             <SearchBar />
 
             <div className="home__filter-container">
-               <CustomFilter title="fuel"/>
-               <CustomFilter title="year"/>
+               <CustomFilter />
+               <CustomFilter />
+            </div>
+
+            <div>
+              <Calendar />
             </div>
           </div>
         </div>
