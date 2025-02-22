@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, subMonths, addMonths } from "date-fns";
-import { ChevronLeft, ChevronRight, CalendarIcon, ArrowLeft, ChevronDown  } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarIcon, ChevronDown } from "lucide-react";
 import clsx from "clsx";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ const Calendar = () => {
   const startDate = startOfWeek(startOfMonth(currentMonth));
   const endDate = endOfWeek(endOfMonth(currentMonth));
 
-  const days = [];
+  const days: Date[] = [];
   let day = startDate;
 
   while (day <= endDate) {
@@ -19,31 +19,36 @@ const Calendar = () => {
     day = addDays(day, 1);
   }
 
+  // Function to randomly assign dot colors
+  const getDotColor = (day: Date) => {
+    const colors = ["bg-red-500", "bg-orange-500", "bg-green-500"];
+    return colors[day.getDate() % colors.length];
+  };
+
   return (
-    <>
-      <div className="max-w-[1116px] mx-auto bg-black text-gray-500 rounded-none p-6">
-        CALENDAR
-        <div className="mt-4 border-t pt-4 font-bold text-white flex mb-10">
-          <CalendarIcon className="mr-2" /> AVAILABILITY & WORK PREFERENCES
-        </div>
+    <div className="max-w-[1116px] mx-auto bg-[#0B0B0B] w-[1116px] h-[900px] text-white p-6 rounded-lg">
+      <h2 className="text-gray-400 text-lg font-medium">CALENDAR</h2>
+      
+      {/* Calendar */}
+      <div className="mt-4 border-t border-gray-600 pt-4 font-bold text-white flex mb-6">
+        <CalendarIcon className="mr-2 text-white" /> AVAILABILITY & WORK PREFERENCES
       </div>
 
-      <div className="w-[1116px] h-[749px] mx-auto bg-black text-white p-6 ">
-      <div className="flex justify-between items-center">
-  {/* Back to Calendar Summary with Arrow Icon */}
-  <div className="flex items-center text-right text-gray-400 hover:text-white cursor-pointer">
-    <Image src="/arrow-go-back-line.png" alt="arrow" width={25} height={25}  className="w-4 h-4 mr-2" />
-    Back to calendar summary
-  </div>
+      <div className="bg-[#FFFFFF0D] text-white border w-[917px] h-[700px] border-white p-6 ml-14 rounded-lg">
+        {/* Navigation */}
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center text-white underline hover:text-white cursor-pointer">
+            <Image src="/arrow-go-back-line.png" alt="arrow" width={25} height={25} className="w-4 h-4 mr-2" />
+            Back to calendar summary
+          </div>
+          <div className="flex items-center border border-gray-400 px-3 py-1 rounded-lg cursor-pointer text-[#CECDD5]">
+            Filter
+            <ChevronDown className="w-4 h-4 ml-2 text-gray-400" />
+          </div>
+        </div>
 
-  {/* Filter Button with Chevron Dropdown Icon */}
-  <div className="flex items-center border border-gray-400 px-3 py-1 rounded-lg cursor-pointer hover:bg-gray-700">
-    Filter
-    <ChevronDown className="w-4 h-4 ml-2 text-gray-400" />
-  </div>
-</div>
-
-        <div className="bg-[#21202D] rounded-lg mt-2 border-white flex items-center justify-between mb-4 p-6">
+        {/* Month */}
+        <div className="flex items-center justify-between bg-[#21202D] rounded-lg py-2 px-6 border border-gray-700">
           <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
             <ChevronLeft className="text-gray-400 hover:text-white" />
           </button>
@@ -52,27 +57,34 @@ const Calendar = () => {
             <ChevronRight className="text-gray-400 hover:text-white" />
           </button>
         </div>
-        <div className="grid grid-cols-7 gap-2 text-center">
+
+        {/* Weekdays */}
+        <div className="grid grid-cols-7 gap-4 text-center mt-4">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <div key={day} className="text-gray-500 text-sm font-medium">
+            <div key={day} className="text-gray-500 text-xs font-bold">
               {day}
             </div>
           ))}
-          {days.map((dayItem) => (
-            <div
-              key={dayItem.toString()}
-              className={clsx(
-                "w-14 h-14 flex items-center justify-center rounded-lg transition border border-gray-700",
-                dayItem.getMonth() === currentMonth.getMonth() ? "bg-gray-800" : "bg-gray-900 text-gray-600",
-                "hover:bg-gray-700 cursor-pointer"
-              )}
-            >
-              {format(dayItem, "d")}
-            </div>
-          ))}
+          
+          {/* Days Grid */}
+          {days.map((dayItem) => {
+            const isCurrentMonth = dayItem.getMonth() === currentMonth.getMonth();
+            return (
+              <div
+                key={dayItem.toString()}
+                className={clsx(
+                  "w-[119.57px] h-[63.4px] flex flex-col items-start justify-between rounded-[12px] border border-[#FFFFFF1A] text-sm font-medium p-2 pl-3 bg-[#FFFFFF0D]",
+                  "hover:bg-gray-700 cursor-pointer relative"
+                )}
+              >
+                {isCurrentMonth && <span>{format(dayItem, "d")}</span>}
+                {isCurrentMonth && <span className={`absolute bottom-2 left-3 w-2 h-2 rounded-full ${getDotColor(dayItem)}`}></span>}
+              </div>
+            );
+          })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
