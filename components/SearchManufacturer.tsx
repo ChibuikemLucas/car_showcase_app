@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, Fragment } from 'react';
-import { ComboboxButton, ComboboxInput, ComboboxOptions } from '@headlessui/react';
+import { ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react';
 import { Combobox, Transition } from '@headlessui/react'
 import { manufacturers } from '@/constants';
 import Image from 'next/image';
@@ -54,7 +54,15 @@ const filteredManufacturers =
              afterLeave={() => setQuery('')}
              >
              <ComboboxOptions>
-              
+              {filteredManufacturers.length === 0 && 
+              query !== "" && (
+                <ComboboxOption
+                value={query}
+                className="search-manufacturer__input"
+                >
+                 Create "{query}" 
+                  </ComboboxOption>
+              )}
               </ComboboxOptions> 
 
              </Transition>
