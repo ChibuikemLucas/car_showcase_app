@@ -1,8 +1,8 @@
-import Image from "next/image";
+//import Image from "next/image";
 import { Hero } from "@/components";
 import SearchBar from "@/components/SearchBar";
 import CustomFilter from "@/components/CustomFilter";
-import { Calendar } from "@/components";
+//import { Calendar } from "@/components";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
             </div>
 
             <div>
-              <Calendar />
+             
             </div>
           </div>
         </div>
