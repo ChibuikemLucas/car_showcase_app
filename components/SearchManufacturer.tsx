@@ -55,13 +55,26 @@ const filteredManufacturers =
              >
              <ComboboxOptions>
               {filteredManufacturers.length === 0 && 
-              query !== "" && (
+              query !== "" ? (
                 <ComboboxOption
                 value={query}
                 className="search-manufacturer__input"
                 >
                  Create "{query}" 
                   </ComboboxOption>
+              ): (
+                filteredManufacturers.map((item) =>(
+                 <ComboboxOption
+                 key={item}
+                 className={({active}) => `
+                 relative search-manfacturer__option
+                
+              $ active ? 'bg-gray-100'
+              `}
+                 >
+
+                 </ComboboxOption>
+                
               )}
               </ComboboxOptions> 
 
