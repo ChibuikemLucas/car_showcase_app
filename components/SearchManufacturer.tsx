@@ -58,7 +58,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
                                     <ComboboxOption
                                         key={item}
                                         value={item}
-                                        className={({ selected }) => `relative search-manufacturer__option ${selected ? 'bg-gray-100' : ''}`}
+                                        className={({ selected }) => `relative search-manufacturer__option ${selected ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
                                     >
                                         {item}
                                     </ComboboxOption>
