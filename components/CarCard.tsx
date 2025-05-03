@@ -27,7 +27,7 @@ const carRent = calculateCarRent(city_mpg, year)
 
        <p>
         <span>
-          Car Rent...
+          {carRent}
         </span>
        </p>
     </div>
