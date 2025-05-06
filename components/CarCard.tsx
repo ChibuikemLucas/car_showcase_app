@@ -14,8 +14,13 @@ const CarCard = ({ car }: CarCardProps) => {
 
   const {city_mpg, year, make, model, transmission, 
     drive } = car; 
-
-const carRent = calculateCarRent(city_mpg, year) 
+    
+    
+    const carRent = calculateCarRent(
+      Number(car.city_mpg) || 25,  // fallback to average city_mpg
+      Number(car.year) || 2020     // fallback to current year
+    );
+    
  
   return (
     <div className="car-card group">
@@ -27,6 +32,8 @@ const carRent = calculateCarRent(city_mpg, year)
 
        <p>
         <span>
+
+          
           {carRent}
         </span>
        </p>
