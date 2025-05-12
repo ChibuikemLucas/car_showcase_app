@@ -74,6 +74,10 @@ const CarCard = ({ car }: CarCardProps) => {
               </p>
               </div>
           </div>
+
+          <div className="car-card__btn-container">
+            {/*<CustomButton />*/}
+          </div>
         </div> 
     </div>
 
