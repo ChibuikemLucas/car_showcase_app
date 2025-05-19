@@ -7,6 +7,7 @@ import CustomFilter from './CustomFilter';
 import SearchManufacturer from './SearchManufacturer';
 //import Calendar from './Calendar';
 import CarCard from './CarCard';
+import CarDetails from './CarDetails';
 
 export {
     Hero,
@@ -17,4 +18,5 @@ export {
     CustomFilter,
     SearchManufacturer,
     CarCard,
+    CarDetails,
 }
