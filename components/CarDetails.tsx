@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
 import { CarProps } from '@/types';
-import { Dialog, Transition, TransitionChild } from '@headlessui/react';
+import { Dialog, Transition, TransitionChild, DialogPanel } from '@headlessui/react';
 
 interface CarDetailsProps {
   isOpen: boolean;
@@ -39,7 +39,9 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
           leaveFrom='opacity-100  scale-100'
           leaveTo='opacity-0  scale-95'
             >
+             <DialogPanel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
 
+             </DialogPanel>
             </TransitionChild>
                  </div>
              </div>
