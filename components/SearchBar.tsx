@@ -1,11 +1,12 @@
 "use client";
 
 import SearchManufacturer from "./SearchManufacturer";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/navigation";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => {
+   return (
   <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
      <Image
       src={"/magnifying-glass.svg"}
@@ -15,11 +16,13 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => {
       className='object-contain'
     />
   </button>
+   )
 }
 
 const SearchBar = () => {
      const [manufacturer, setManufacturer] = useState('');
      const [model, setModel] = useState("");
+     const router = useRouter();
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -28,7 +31,7 @@ const SearchBar = () => {
       return alert("Please provide some input");
     }
 
-   // updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
+    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
     };
 
     const updateSearchParams = (model: string, manufacturer: string) => {
