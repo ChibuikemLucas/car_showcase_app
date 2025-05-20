@@ -3,6 +3,7 @@
 import SearchManufacturer from "./SearchManufacturer";
 import { useState } from "react";
 import Image from "next/image";
+import React from "react";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => {
   <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
@@ -20,8 +21,17 @@ const SearchBar = () => {
      const [manufacturer, setManufacturer] = useState('');
      const [model, setModel] = useState("");
 
-    const handleSearch = () => {}
-  return (
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+    if (manufacturer.trim() === "" && model.trim() === "") {
+      return alert("Please provide some input");
+    }
+
+   // updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
+    };
+   
+    return (
     <form className="searchbar" onSubmit={handleSearch}>
       <div className="searchbar__item">
         <SearchManufacturer 
