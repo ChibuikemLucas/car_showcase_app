@@ -3,7 +3,7 @@
 import { Fragment, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Listbox, ListboxButton, Transition } from "@headlessui/react";
+import { Listbox, ListboxButton, Transition, ListboxOptions } from "@headlessui/react";
 import { CustomFilterProps } from "@/types";
 
 
@@ -29,7 +29,30 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
             leave='transition ease-in duration-100'
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
-          ></Transition>
+          >
+            <ListboxOptions className='custom-filter__options'>
+               {/* Map over the options and display them as listbox options */}
+              {options.map((option) => (
+                <ListboxOptions
+                  key={option.title}
+                  className={({ active }) =>
+                    `relative cursor-default select-none py-2 px-4 ${
+                      active ? "bg-primary-blue text-white" : "text-gray-900"
+                    }`
+                  }
+                  value={option}
+                >
+                  {({ selected }) => (
+                    <>
+                      <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`} >
+                        {option.title}
+                      </span>
+                    </>
+                  )}
+                </ListboxOptions>
+              ))}
+            </ListboxOptions>
+          </Transition>
     </div>
     </Listbox>
     </div>
