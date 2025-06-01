@@ -5,10 +5,19 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Listbox, ListboxButton, Transition, ListboxOptions } from "@headlessui/react";
 import { CustomFilterProps } from "@/types";
+//import { updateSearchParams } from "@/utils";
 
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const [selected, setSelected] = useState(options[0]); // State for storing the selected option
+ 
+  // update the URL search parameters and navigate to the new URL
+  const handleUpdateParams = (e: { title: string; value: string }) => {
+    const newPathName = '';
+
+    router.push(newPathName);
+  };
+ 
   return (
     <div className='w-fit'>
       <Listbox  
