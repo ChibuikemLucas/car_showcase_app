@@ -53,6 +53,8 @@ export default async function Home({ searchParams }) {
 ))}
 
             </div>
+
+            <ShowMore />
             </section>
           ):(
             <div className="home__error-container">
@@ -61,6 +63,8 @@ export default async function Home({ searchParams }) {
               <p>{allCars?.message}</p>
             </div>
           )}
+
+
         </div>
       </main>
   );
