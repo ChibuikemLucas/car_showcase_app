@@ -16,21 +16,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const handleUpdateParams = (type: string, value: string ) => {
     const newPathName = '';
 
-    const searchParams = new URLSearchParams(window.location.search);
-
-   searchParams.set(type, value);
-
-     
-    if (manufacturer) {
-      searchParams.set("manufacturer", manufacturer);
-    } else {
-       searchParams.delete("manufacturer");
-    }
-
-    // Generate the new pathname with the updated search parameters
-    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-
-
+    
     router.push(newPathName);
   };
  
