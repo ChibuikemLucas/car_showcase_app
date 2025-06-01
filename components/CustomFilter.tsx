@@ -9,6 +9,7 @@ import { CustomFilterProps } from "@/types";
 
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
+  const router = useRouter();
   const [selected, setSelected] = useState(options[0]); // State for storing the selected option
  
   // update the URL search parameters and navigate to the new URL
