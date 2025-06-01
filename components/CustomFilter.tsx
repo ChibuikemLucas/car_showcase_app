@@ -13,8 +13,23 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const [selected, setSelected] = useState(options[0]); // State for storing the selected option
  
   // update the URL search parameters and navigate to the new URL
-  const handleUpdateParams = (e: { title: string; value: string }) => {
+  const handleUpdateParams = (type: string, value: string ) => {
     const newPathName = '';
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+   searchParams.set(type, value);
+
+     
+    if (manufacturer) {
+      searchParams.set("manufacturer", manufacturer);
+    } else {
+       searchParams.delete("manufacturer");
+    }
+
+    // Generate the new pathname with the updated search parameters
+    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+
 
     router.push(newPathName);
   };
