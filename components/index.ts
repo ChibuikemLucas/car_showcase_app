@@ -9,6 +9,8 @@ import SearchManufacturer from './SearchManufacturer';
 import CarCard from './CarCard';
 import CarDetails from './CarDetails';
 import ShowMore from './ShowMore';
+import { ClientCarSection } from './ClientCarSection';
+
 
 export {
     Hero,
@@ -21,4 +23,5 @@ export {
     CarCard,
     CarDetails,
     ShowMore,
+    ClientCarSection,
 }
