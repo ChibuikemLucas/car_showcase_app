@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, Fragment } from "react";
-import { Combobox, Transition, ComboboxButton, ComboboxInput, ComboboxOptions, ComboboxOption } from "@headlessui/react";
+import {
+  Combobox,
+  Transition,
+  ComboboxButton,
+  ComboboxInput,
+  ComboboxOptions,
+  ComboboxOption,
+} from "@headlessui/react";
 import Image from "next/image";
 import { manufacturers } from "@/constants";
 import { SearchManuFacturerProps } from "@/types";
@@ -56,26 +63,20 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
                 filteredManufacturers.map((item) => (
                   <ComboboxOption
                     key={item}
-                    className={({ active }) =>
-                      `relative search-manufacturer__option ${
-                        active ? "bg-primary-blue text-white" : "text-gray-900"
-                      }`
-                    }
                     value={item}
+                    className='ui-active:bg-primary-blue ui-active:text-white text-gray-900 relative search-manufacturer__option'
                   >
-                    {({ selected, active }) => (
+                    {({ selected }) => (
                       <>
                         <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
                           {item}
                         </span>
 
-                        {selected ? (
-                          <span
-                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? "text-white" : "text-pribg-primary-purple"
-                            }`}
-                          ></span>
-                        ) : null}
+                        {selected && (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-primary-purple">
+                            {/* You can put a check icon here if needed */}
+                          </span>
+                        )}
                       </>
                     )}
                   </ComboboxOption>
