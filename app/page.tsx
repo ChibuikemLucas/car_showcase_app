@@ -42,6 +42,7 @@ export default async function Home() {
   }
 
   useEffect(() => {
+    
     getCars();
   }, [fuel, year, limit, manufacturer, model])
   
