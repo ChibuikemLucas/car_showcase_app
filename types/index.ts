@@ -47,7 +47,7 @@ export interface OptionProps {
 export interface CustomFilterProps {
   title: string;
   options: OptionProps[];
-  setFilter?: (value: string) => void;
+  setFilter?: (value: string | number) => void;
 }
 
 export interface ShowMoreProps {
