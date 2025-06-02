@@ -16,13 +16,32 @@ export default async function Home() {
 
   // filter states
   const [fuel, setFuel] = useState("");
-  const [year, setYear] = useState(202);
+  const [year, setYear] = useState(2022);
 
   // pagination states
   const [limit, setLimit] = useState(10);
 
+  const getCars = async () => {
+     try {
+      const result = await fetchCars({
+    manufacturer: manufacturer || "",
+    year: year || 2022,
+    fuel: fuel || "",
+    limit: limit || 10,
+    model: model || "",
+     });
+
+     setAllCars(result);
+      
+     } catch (error) {
+      console.log(error);
+     } finally {
+       setLoading(false);
+     }
+  }
+
   useEffect(() => {
-    
+    getCars();
   }, [fuel, year, limit, manufacturer, model])
   
 
@@ -67,8 +86,8 @@ export default async function Home() {
             </div>
 
             <ShowMore 
-            pageNumber={(searchParams.limit || 10) / 10}
-              isNext={(searchParams.limit || 10) > allCars.length}
+            pageNumber={(limit || 10) / 10}
+              isNext={(limit || 10) > allCars.length}
             />
             </section>
           ):(
