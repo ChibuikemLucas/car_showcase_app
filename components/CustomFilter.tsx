@@ -2,41 +2,43 @@
 
 import { Fragment, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Listbox, ListboxButton, Transition, ListboxOptions } from "@headlessui/react";
+import { Listbox, Transition, ListboxOptions, ListboxOption, ListboxButton } from "@headlessui/react";
 import { CustomFilterProps } from "@/types";
-import { UpdateSearchParams } from "@/utils";
 
+const CustomFilter = ({ /*title,*/ options, setFilter }: CustomFilterProps) => {
+  const [selected, setSelected] = useState(options[0]);
 
-const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
-  const [selected, setSelected] = useState(options[0]); // State for storing the selected option
- 
- 
+  const handleChange = (e: typeof options[0]) => {
+    setSelected(e);
+    if (setFilter) setFilter(e.value); // optional use
+  };
+
   return (
     <div className='w-fit'>
-      <Listbox  
-      value={selected}
-        onChange={(e) => {
-          setSelected(e); // Update the selected option in state
-          setFilter(e.value);
-        }}>
-    <div className='relative w-fit z-10'>
-      <ListboxButton className='custom-filter__btn'>
-       <span className='block truncate'>{selected.title}</span>
-       <Image src='/chevron-up-down.svg' width={20} height={20} className='ml-4 object-contain' alt='chevron_up-down' />
-      </ListboxButton>
+      <Listbox value={selected} onChange={handleChange}>
+        <div className='relative w-fit z-10'>
+          {/* Button for the listbox */}
+          <ListboxButton className='custom-filter__btn'>
+            <span className='block truncate'>{selected.title}</span>
+            <Image
+              src='/chevron-up-down.svg'
+              width={20}
+              height={20}
+              className='ml-4 object-contain'
+              alt='chevron_up-down'
+            />
+          </ListboxButton>
 
-       {/* Transition for displaying the options */}
+          {/* Transition and dropdown */}
           <Transition
-            as={Fragment} // group multiple elements without introducing an additional DOM node i.e., <></>
+            as={Fragment}
             leave='transition ease-in duration-100'
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
             <ListboxOptions className='custom-filter__options'>
-               {/* Map over the options and display them as listbox options */}
               {options.map((option) => (
-                <ListboxOptions
+                <ListboxOption
                   key={option.title}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 px-4 ${
@@ -46,20 +48,22 @@ const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
                   value={option}
                 >
                   {({ selected }) => (
-                    <>
-                      <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`} >
-                        {option.title}
-                      </span>
-                    </>
+                    <span
+                      className={`block truncate ${
+                        selected ? "font-medium" : "font-normal"
+                      }`}
+                    >
+                      {option.title}
+                    </span>
                   )}
-                </ListboxOptions>
+                </ListboxOption>
               ))}
             </ListboxOptions>
           </Transition>
+        </div>
+      </Listbox>
     </div>
-    </Listbox>
-    </div>
-  )
-}
+  );
+};
 
-export default CustomFilter
+export default CustomFilter;
