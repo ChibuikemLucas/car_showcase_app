@@ -1,6 +1,8 @@
-import React from 'react'
+"use client";
 
-const ShowMore = () => {
+import { useRouter } from "next/navigation";
+
+const ShowMore = ({ pageNumber, isNext }) => {
   return (
     <div>ShowMore</div>
   )
