@@ -5,9 +5,9 @@ import { fetchCars } from "@/utils";
 import { fuels, yearsOfProduction } from "@/constants";
 import { CarCard, ShowMore, SearchBar, CustomFilter } from "@/components";
 import Image from "next/image";
-import { CarProps } from "@/types";
+import { CarProps, ClientCarSectionProps } from "@/types";
 
-export function ClientCarSection() {
+export function ClientCarSection({ /*initialCars*/ }: ClientCarSectionProps) {
   const [allCars, setAllCars] = useState<CarProps[]>([]);
   const [loading, setLoading] = useState(false);
 

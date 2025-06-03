@@ -60,3 +60,7 @@ export interface SearchManuFacturerProps {
   manufacturer: string;
   setManuFacturer: (manufacturer: string) => void;
 }
+
+export interface ClientCarSectionProps {
+  initialCars: CarProps[];
+}
