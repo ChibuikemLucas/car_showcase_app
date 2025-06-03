@@ -56,8 +56,18 @@ export function ClientCarSection() {
       <div className="home__filters">
         <SearchBar setManufacturer={setManufacturer} setModel={setModel} />
         <div className="home__filter-container">
-          <CustomFilter title="fuel" options={fuels} setFilter={setFuel} />
-          <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear} />
+          <CustomFilter
+  title="fuel"
+  options={fuels}
+  setFilter={(val) => setFuel(String(val))}
+/>
+
+<CustomFilter
+  title="year"
+  options={yearsOfProduction}
+  setFilter={(val) => setYear(Number(val))}
+/>
+
         </div>
       </div>
 
