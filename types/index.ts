@@ -64,3 +64,7 @@ export interface SearchManuFacturerProps {
 export interface ClientCarSectionProps {
   initialCars: CarProps[];
 }
+
+export interface HomeProps {
+  searchParams: FilterProps;
+}

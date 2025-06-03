@@ -1,23 +1,31 @@
 import { CarProps, FilterProps } from "@/types";
 
-export async function fetchCars (filters: FilterProps){
-   const { manufacturer, year, model, limit, fuel } = filters;
 
-    const headers = {	
-        'x-rapidapi-key': 'ef38d5dcdbmsh69425693823ab08p17c326jsnc9411c6025c3',
-		'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
-    }
 
-    
+export async function fetchCars(filters: {
+  manufacturer: string;
+  year: number;
+  fuel: string;
+  limit: number;
+  model: string;
+}) {
+  const { manufacturer, year, fuel, limit, model } = filters;
 
-    const response = await fetch ( `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,{
-        headers: headers,
-    });
+  const headers = {
+    "X-RapidAPI-Key": "ef38d5dcdbmsh69425693823ab08p17c326jsnc9411c6025c3",
+    "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
+  };
 
-    const result = await response.json();
+  const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer || "toyota"}&year=${year}&model=${model}&fuel_type=${fuel}&limit=${limit}`;
 
-    return result;
+  const response = await fetch(url, { headers });
+  if (!response.ok) throw new Error("Failed to fetch car data");
+
+  const result = await response.json();
+  return result;
 }
+
+
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
     const basePricePerDay = 50; // Base rental price per day in dollars
